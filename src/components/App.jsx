@@ -23,6 +23,8 @@ export default function App () {
   
   const totalFeedback = feedback.good + feedback.neutral + feedback.bad;
 
+  const positiveFeedbackPersentage = totalFeedback > 0 ? Math.round((feedback.good / totalFeedback) * 100) : 0;
+
   const resetFeedback = () => {
     setFeedback({
       good: 0,
@@ -37,7 +39,7 @@ export default function App () {
       <Description />
       <Options updateFeedback={updateFeedback} resetFeedback={resetFeedback} totalFeedback={totalFeedback} />
       {totalFeedback > 0 ? (
-        <Feedback feedback={feedback} />) : (
+        <Feedback feedback={feedback} positiveFeedback={positiveFeedbackPersentage}/>) : (
         <Notification message="No feedback yet" />)}
     </div>
   );
